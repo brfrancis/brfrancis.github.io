@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Indico | Platform Demo</title>
+  <link rel="icon" href="https://static.wixstatic.com/media/2d5ad3_b39f8d65d93b46abb66ad1c01a134fc1~mv2.png" type="image/png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.wixstatic.com/media/2d5ad3_b39f8d65d93b46abb66ad1c01a134fc1~mv2.png" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-black: #000000;
+      --bg-elevated: #0a0a0a;
+      --accent-orange: #FAA61A;
+      --accent-orange-dim: rgba(250, 166, 26, 0.12);
+      --accent-blue: #00AEEF;
+      --accent-blue-dim: rgba(0, 174, 239, 0.12);
+	  --accent-iblue: #0077ff;
+      --accent-iblue-dim: rgba(79, 121, 66, 0.12);
+      --panel-bg: rgba(255, 255, 255, 0.03);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --panel-border-hover: rgba(255, 255, 255, 0.25);
+      --text-main: #ffffff;
+      --text-secondary: #e4e4e7;
+      --text-muted: #a1a1aa;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-black);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .partnership-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .partnership-header img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .partnership-header img.customer-logo {
+      height: 64px;
+    }
+
+    .partnership-connector {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      animation: fadeIn 1s ease-out 0.5s both;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .scroll-indicator:hover {
+      color: var(--text-secondary);
+    }
+
+    .scroll-indicator i {
+      font-size: 1.25rem;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-headline {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-top: 3rem;
+      animation: fadeIn 1s ease-out 0.3s both;
+    }
+
+    .hero-headline span {
+      color: var(--accent-orange);
+    }
+
+    .hero-subtitle {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      animation: fadeIn 1s ease-out 0.5s both;
+    }
+
+    .hero-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3rem;
+      animation: fadeIn 1s ease-out 0.7s both;
+    }
+
+    .hero-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 1rem 2rem;
+      border: 2px solid var(--panel-border);
+      background: var(--panel-bg);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-nav-btn:hover {
+      border-color: var(--panel-border-hover);
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    .hero-nav-btn.orchestrate:hover {
+      border-color: var(--accent-orange);
+      background: var(--accent-orange-dim);
+    }
+
+    .hero-nav-btn.operate:hover {
+      border-color: var(--accent-blue);
+      background: var(--accent-blue-dim);
+    }
+  
+  .hero-nav-btn.customer:hover {
+      border-color: var(--accent-white);
+      background: var(--accent-white-dim);
+    }
+
+    .hero-nav-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .hero-nav-btn.orchestrate .hero-nav-icon {
+      background: var(--accent-orange);
+      color: #000;
+    }
+
+    .hero-nav-btn.operate .hero-nav-icon {
+      background: var(--accent-blue);
+      color: #000;
+    }
+  
+  .hero-nav-btn.customer .hero-nav-icon {
+      background: var(--accent-iblue);
+      color: #000;
+    }
+
+
+    .hero-nav-btn.london-market:hover {
+      border-color: var(--accent-orange);
+      background: rgba(250, 166, 26, 0.18);
+    }
+
+    .hero-nav-btn.london-market .hero-nav-icon {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-blue));
+      color: #000;
+    }
+
+    .hero-nav--center {
+      justify-content: center;
+      width: 100%;
+      max-width: 420px;
+      margin-inline: auto;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-nav--center .hero-nav-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ===== PANEL NAV BUTTONS ===== */
+    .panel-nav {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      z-index: 10;
+    }
+
+    .panel-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--panel-border);
+      background: var(--panel-bg);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .panel-nav-btn:hover {
+      border-color: var(--panel-border-hover);
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .panel-nav-btn i {
+      font-size: 0.75rem;
+    }
+
+    /* ===== CONFIG BUTTON ===== */
+    .config-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .config-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--panel-border-hover);
+      color: var(--text-main);
+      transform: rotate(90deg);
+    }
+
+    /* ===== CONFIG PANEL ===== */
+    .config-panel {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--bg-elevated);
+      border-left: 1px solid var(--panel-border);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s ease;
+    }
+
+    .config-panel.active {
+      right: 0;
+    }
+
+    .config-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--panel-border);
+    }
+
+    .config-header h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .config-close {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .config-close:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    .config-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .config-section {
+      margin-bottom: 2rem;
+    }
+
+    .config-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .config-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .theme-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+    }
+
+    .theme-btn.active {
+      background: var(--accent-orange-dim);
+      border-color: var(--accent-orange);
+      color: var(--accent-orange);
+    }
+
+    /* Logo Upload */
+    .logo-upload-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .current-logo {
+      padding: 1rem;
+      background: var(--panel-bg);
+      border: 1px dashed var(--panel-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+    }
+
+    .current-logo img {
+      max-height: 48px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .logo-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .logo-placeholder i {
+      font-size: 1rem;
+    }
+
+    .upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .upload-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--panel-border-hover);
+    }
+
+    .reset-logo-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .reset-logo-btn:hover {
+      color: var(--text-secondary);
+    }
+
+    /* Links Editor */
+    .links-editor {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .link-item {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+
+    .link-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .link-item-header i {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .link-item-header span {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .link-item input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .link-item input:focus {
+      outline: none;
+      border-color: var(--accent-orange);
+    }
+
+    .link-item input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Config Footer */
+    .config-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--panel-border);
+    }
+
+    .config-save-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1rem;
+      background: var(--accent-orange);
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .config-save-btn:hover {
+      background: #e6951a;
+      transform: translateY(-1px);
+    }
+
+    .config-footer-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .config-download-btn,
+    .config-upload-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: transparent;
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .config-download-btn:hover,
+    .config-upload-btn:hover {
+      background: var(--panel-bg);
+      border-color: var(--panel-border-hover);
+      color: var(--text-main);
+    }
+
+    /* Config Overlay */
+    .config-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .config-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== LIGHT THEME ===== */
+    body.light-theme {
+      --bg-black: #f8f9fa;
+      --bg-elevated: #ffffff;
+      --panel-bg: rgba(0, 0, 0, 0.03);
+      --panel-border: rgba(0, 0, 0, 0.1);
+      --panel-border-hover: rgba(0, 0, 0, 0.2);
+      --text-main: #111111;
+      --text-secondary: #374151;
+      --text-muted: #6b7280;
+    }
+
+    body.light-theme .partnership-header img.indico-logo {
+      filter: invert(1);
+      background: transparent;
+      mix-blend-mode: multiply;
+    }
+
+    body.light-theme .hero-nav-icon,
+    body.light-theme .panel-icon {
+      color: #fff;
+    }
+
+    body.light-theme .link-item input {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    body.light-theme .panel-box {
+      border-color: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    body.light-theme .feature-tile {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    body.light-theme .feature-tile:hover {
+      background: rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+
+    body.light-theme .customer-focus-btn {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    body.light-theme .customer-focus-btn:hover {
+      background: var(--accent-iblue-dim);
+      border-color: var(--accent-iblue);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .content-wrapper {
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    /* ===== PANEL ===== */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .panel-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 3.5rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Panel Header - matches original design */
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .panel-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .panel-icon.orchestrate {
+      background: var(--accent-orange);
+      color: #000;
+    }
+
+    .panel-icon.operate {
+      background: var(--accent-blue);
+      color: #000;
+    }
+	
+	.panel-icon.operate {
+      background: var(--accent-iblue);
+      color: #000;
+    }
+
+    .panel-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    /* ===== SECTION BLOCKS ===== */
+    .section-block {
+      margin-bottom: 3rem;
+    }
+
+    .section-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header i {
+      font-size: 1.125rem;
+    }
+
+    .orchestrate .section-header i {
+      color: var(--accent-orange);
+    }
+
+    .operate .section-header i {
+      color: var(--accent-blue);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .orchestrate .section-title {
+      color: var(--accent-orange);
+    }
+
+    .operate .section-title {
+      color: var(--accent-blue);
+    }
+
+    /* Two-column layout for description + personas */
+    .description-personas-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== CAPABILITY LIST ===== */
+    .capability-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .capability-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    .capability-list li i {
+      margin-top: 0.35rem;
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    .orchestrate .capability-list li i {
+      color: var(--accent-orange);
+    }
+
+    .operate .capability-list li i {
+      color: var(--accent-blue);
+    }
+
+    /* ===== FEATURE GRID ===== */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .feature-tile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 1.0625rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .feature-tile:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .feature-tile i {
+      font-size: 1.125rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .orchestrate .feature-tile i {
+      color: var(--accent-orange);
+    }
+
+    .operate .feature-tile i {
+      color: var(--accent-blue);
+    }
+
+    .feature-tile.highlight {
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border-style: solid;
+    }
+
+    .orchestrate .feature-tile.highlight:hover {
+      background: var(--accent-orange-dim);
+      border-color: var(--accent-orange);
+    }
+
+    .operate .feature-tile.highlight:hover {
+      background: var(--accent-blue-dim);
+      border-color: var(--accent-blue);
+    }
+  
+  .customer .feature-tile.highlight:hover {
+      background: var(--accent-iblue-dim);
+      border-color: var(--accent-iblue);
+    }
+
+    /* ===== CUSTOMER FOCUS GRID ===== */
+    .customer-focus-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .customer-focus-btn {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 1.125rem;
+      font-weight: 500;
+      width: 100%;
+      transition: all 0.25s ease;
+    }
+
+    .customer-focus-btn:hover {
+      background: var(--accent-iblue-dim);
+      border-color: var(--accent-iblue);
+      transform: translateY(-2px);
+    }
+
+    .customer-focus-btn i {
+      font-size: 1.25rem;
+      width: 28px;
+      text-align: center;
+      color: var(--accent-iblue);
+    }
+
+    /* ===== PERSONAS ===== */
+    .personas-columns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .persona-list {
+      list-style: disc;
+      list-style-position: inside;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .persona-list li {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+    }
+
+
+
+    /* ===== LONDON MARKET PANEL ===== */
+    .lm-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lm-top-nav {
+      position: sticky;
+      top: 0.75rem;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .lm-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .lm-nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .lm-nav-link {
+      border: 1px solid var(--panel-border);
+      background: var(--panel-bg);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lm-nav-link.active,
+    .lm-nav-link[aria-selected="true"],
+    .lm-nav-link:hover {
+      border-color: var(--accent-orange);
+      color: var(--text-main);
+      background: var(--accent-orange-dim);
+    }
+
+    .lm-nav-link:focus-visible,
+    .lm-play-link:focus-visible {
+      outline: 2px solid var(--accent-orange);
+      outline-offset: 2px;
+    }
+
+    .lm-play-link {
+      border-radius: 10px;
+      border: 1px solid var(--panel-border);
+      padding: 0.7rem 1rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lm-play-link:hover { transform: translateY(-2px); }
+
+    .lm-play-link {
+      background: var(--panel-bg);
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .lm-content-panel {
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      padding: 2rem;
+      background: var(--panel-bg);
+    }
+
+    .lm-content-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.6rem; }
+    .lm-content-desc { color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; max-width: 70ch; }
+
+    .lm-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .lm-column-card {
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.1rem;
+    }
+
+    .lm-column-title {
+      margin-bottom: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .lm-play-list,
+    .lm-value-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      list-style: none;
+    }
+
+    .lm-play-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-orange-dim);
+      color: var(--accent-orange);
+      flex: 0 0 auto;
+      font-size: 0.75rem;
+    }
+
+    .lm-value-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      gap: 0.55rem;
+      color: var(--text-main);
+    }
+
+    .lm-value-list li {
+      border: 1px solid var(--accent-orange-dim);
+      background: rgba(250, 166, 26, 0.12);
+      color: var(--accent-orange);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.88rem;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    .integration-shell {
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      padding: 1.25rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .integration-intro { color: var(--text-muted); line-height: 1.5; }
+    .integration-map { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; }
+    .integration-column { display: grid; gap: 0.8rem; }
+    .integration-column h3 { font-size: 1rem; color: var(--text-secondary); }
+    .logo-slot {
+      min-height: 86px;
+      border: 1px dashed rgba(255,255,255,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.04);
+    }
+    .logo-slot img { max-width: 160px; max-height: 54px; object-fit: contain; display: none; }
+    .logo-slot.has-image img { display: block; }
+    .logo-empty { color: var(--text-muted); font-size: 0.9rem; }
+    .logo-slot.has-image .logo-empty { display: none; }
+    .logo-link { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+    .integration-center { display: flex; align-items: center; gap: 0.8rem; }
+    .indico-core {
+      width: 230px;
+      height: 230px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, #003f8a, #062b56 65%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .indico-core img { width: 130px; }
+    .integration-arrow { color: #1987ff; font-size: 2rem; }
+    .integration-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
+    .presentation-toggle {
+      width: fit-content;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .presentation-mode .integration-controls { display: none; }
+    .slot-control {
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 0.75rem;
+      background: rgba(0,0,0,0.2);
+      display: grid;
+      gap: 0.55rem;
+    }
+    .slot-control h4 { font-size: 0.9rem; }
+    .slot-control input[type="url"] {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.03);
+      color: var(--text-main);
+      padding: 0.5rem 0.6rem;
+    }
+    .slot-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .slot-actions button,
+    .slot-actions label {
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: rgba(25,135,255,0.2);
+      color: #9ec9ff;
+    }
+    .slot-actions .remove { background: rgba(235,87,87,0.15); color: #ffb3b3; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(6px); }
+      60% { transform: translateY(3px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .partnership-header {
+        gap: 1.5rem;
+      }
+
+      .partnership-header img {
+        height: 48px;
+      }
+
+      .partnership-header img.customer-logo {
+        height: 48px;
+      }
+
+      .partnership-connector {
+        font-size: 1.75rem;
+      }
+
+      .hero-nav {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+      } 
+	  
+
+      .hero-nav-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .panel-box {
+        padding: 2rem;
+      }
+
+      .description-personas-row {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .integration-map {
+        grid-template-columns: 1fr;
+      }
+
+      .integration-center {
+        justify-content: center;
+      }
+
+      .integration-arrow {
+        display: none;
+      }
+
+      .integration-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .integration-map {
+        grid-template-columns: 1fr;
+      }
+
+      .integration-center {
+        justify-content: center;
+      }
+
+      .integration-arrow {
+        display: none;
+      }
+
+      .integration-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="partnership-header">
+      <img src="" alt="Customer" class="customer-logo" id="customerLogo" style="display: none;" />
+      <span class="partnership-connector second-connector" id="secondConnector" style="display: none;">×</span>
+      <img src="" alt="Partner" class="customer-logo" id="secondLogo" style="display: none;" />
+      <span class="partnership-connector" id="customerConnector" style="display: none;">×</span>
+      <img src="images/indico_logo.png" alt="Indico Data" class="indico-logo" />
+    </div>
+    <h1 class="hero-headline">The Intake & Orchestration Platform<br><span>for Insurance Operations</span></h1>
+    <p class="hero-subtitle">Indico is the operations layer that modernizes how work enters and moves through the enterprise.</p>
+    
+    <div class="hero-nav">
+      <button class="hero-nav-btn london-market" data-target="london-market">
+        <span class="hero-nav-icon"><i class="fas fa-landmark"></i></span>
+        <span>Integrations</span>
+      </button>
+    </div>
+    <div class="hero-nav">
+      <button class="hero-nav-btn operate" data-target="operate">
+        <span class="hero-nav-icon"><i class="fas fa-play"></i></span>
+        <span>Workspaces</span>
+      </button>
+      <button class="hero-nav-btn orchestrate" data-target="orchestrate">
+        <span class="hero-nav-icon"><i class="fas fa-sliders-h"></i></span>
+        <span>Agent Studio</span>
+      </button>
+    </div>
+    <div class="hero-nav">
+      <button class="hero-nav-btn customer" data-target="customer">
+        <span class="hero-nav-icon"><i class="fas fa-line-chart"></i></span>
+        <span>Focus Points</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="main-content" id="platform">
+    <div class="content-wrapper">
+
+      <div class="panel-nav" id="panelNav"></div>
+
+      <!-- Agent Studio Panel -->
+      <div class="tab-panel orchestrate" id="panel-orchestrate">
+        <div class="panel-box">
+
+          <!-- Panel Header -->
+          <div class="panel-header">
+            <div class="panel-icon orchestrate">
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <h2 class="panel-title">Indico Agent Studio</h2>
+          </div>
+
+          <!-- Description + Personas Row -->
+          <div class="description-personas-row">
+            <!-- Orchestrate -->
+            <div class="section-block" style="margin-bottom: 0;">
+              <div class="section-header">
+                <i class="fas fa-cogs"></i>
+                <h3 class="section-title">Orchestrate</h3>
+              </div>
+              <ul class="capability-list">
+                <li><i class="fas fa-rocket"></i><span>Scalable & traceable AI workflows</span></li>
+                <li><i class="fas fa-network-wired"></i><span>Low-code/no-code Agentic AI orchestration</span></li>
+                <li><i class="fas fa-wrench"></i><span>Configure, test & launch your agents in minutes</span></li>
+              </ul>
+            </div>
+
+            <!-- Personas -->
+            <div class="section-block" style="margin-bottom: 0;">
+              <div class="section-header">
+                <i class="fas fa-users"></i>
+                <h3 class="section-title">Core Personas</h3>
+              </div>
+              <ul class="capability-list">
+                <li><i class="fas fa-user-tie"></i><span>Technical & Data SMEs</span></li>
+                <li><i class="fas fa-project-diagram"></i><span>Process Architects</span></li>
+                <li><i class="fas fa-server"></i><span>AI & IT Operations</span></li>
+                <li><i class="fas fa-shield-alt"></i><span>Compliance & Risk Leaders</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Key Features -->
+          <div class="section-block" style="margin-bottom: 0;">
+            <div class="section-header">
+              <i class="fas fa-puzzle-piece"></i>
+              <h3 class="section-title">Key Features</h3>
+            </div>
+            <div class="feature-grid">
+              <a href="https://try.indico.io/gallery/agents" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Agent Gallery">
+                <i class="fas fa-images"></i><span>Agent Gallery</span>
+              </a>
+              <a href="https://dev-indico.pythonanywhere.com/prompts" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Field & Prompt Gallery">
+                <i class="fas fa-comment-dots"></i><span>Field & Prompt Gallery</span>
+              </a>
+              <a href="https://try.indico.io/teach/extraction-studio/5806?targetId=96497" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Extraction Studio">
+                <i class="fas fa-file-excel"></i><span>Extraction Studio</span>
+              </a>
+              <a href="https://try.indico.io/teach/summarization/5805" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Summarization Studio">
+                <i class="fas fa-list-alt"></i><span>Summarization Studio</span>
+              </a>
+              <a href="https://try.indico.io/workflows/4997/details/canvas" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Workflow Canvas">
+                <i class="fas fa-sitemap"></i><span>Workflow Canvas</span>
+              </a>
+              <a href="https://dev-indico.pythonanywhere.com/workspace-config/" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Workspace Editor">
+                <i class="fas fa-user-check"></i><span>Workspace Editor</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Workspaces Panel -->
+      <div class="tab-panel operate" id="panel-operate">
+        <div class="panel-box">
+
+          <!-- Panel Header -->
+          <div class="panel-header">
+            <div class="panel-icon operate">
+              <i class="fas fa-play"></i>
+            </div>
+            <h2 class="panel-title">Indico Workspaces</h2>
+          </div>
+
+          <!-- Description + Personas Row -->
+          <div class="description-personas-row">
+            <!-- Operate -->
+            <div class="section-block" style="margin-bottom: 0;">
+              <div class="section-header">
+                <i class="fas fa-layer-group"></i>
+                <h3 class="section-title">Operate</h3>
+              </div>
+              <ul class="capability-list">
+                <li><i class="fas fa-chart-line"></i><span>Surface priority risks in incoming submissions</span></li>
+                <li><i class="fas fa-exclamation-triangle"></i><span>Provide actionable insights and exception alerts</span></li>
+                <li><i class="fas fa-sync-alt"></i><span>Streamline policy servicing with automated workflows</span></li>
+              </ul>
+            </div>
+
+            <!-- Personas -->
+            <div class="section-block" style="margin-bottom: 0;">
+              <div class="section-header">
+                <i class="fas fa-users"></i>
+                <h3 class="section-title">Core Personas</h3>
+              </div>
+              <ul class="capability-list">
+                <li><i class="fas fa-pen-fancy"></i><span>Underwriting Teams</span></li>
+                <li><i class="fas fa-notes-medical"></i><span>Claims Teams</span></li>
+                <li><i class="fas fa-user-tie"></i><span>Operations Leadership</span></li>
+                <li><i class="fas fa-headset"></i><span>Policy Servicing Reps</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Key Features -->
+          <div class="section-block" style="margin-bottom: 0;">
+            <div class="section-header">
+              <i class="fas fa-puzzle-piece"></i>
+              <h3 class="section-title">Key Features</h3>
+            </div>
+            <div class="feature-grid">
+              <a href="https://insights.ins-claims-pinned.us-east-2.indico-dev.indico.io/list?list.filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22EQUAL%22%2C%22values%22%3A%5B%22Needs+Attention%22%2C%22In+Good+Order%22%2C%22Calculating%22%2C%22Initializing%22%5D%7D%5D&list.sortByField=created_at" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Claims Workspace">
+                <i class="fas fa-file-medical"></i><span>Claims Workspace</span>
+              </a>
+              <a href="https://insights.ins-try-eu.eu-west-2.indico-prod.indico.io" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Underwriting Workspace">
+                <i class="fas fa-tachometer-alt"></i><span>Underwriting Workspace</span>
+              </a>
+              <a href="https://insights.ins-claims-pinned.us-east-2.indico-dev.indico.io/dashboard?filters=date_range%3A2025-12-29%7C2026-01-29" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Submission Analytics">
+                <i class="fas fa-chart-pie"></i><span>Submission Analytics</span>
+              </a>
+              <a href="https://dev-indico.pythonanywhere.com/submission?cluster=TRY&workflow=4997" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Review Queues">
+                <i class="fas fa-tasks"></i><span>Review Queues</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- London Market Panel -->
+      <div class="tab-panel london-market" id="panel-london-market">
+        <div class="panel-box">
+          <div class="panel-header">
+            <div class="panel-icon orchestrate"><i class="fas fa-landmark"></i></div>
+            <h2 class="panel-title">Indico Upstream & Downstream Integrations</h2>
+          </div>
+          <div class="integration-shell">
+            <div class="integration-map" id="integrationMap">
+              <div class="integration-column">
+                <h3>Upstream Systems</h3>
+                <div class="logo-slot" data-slot="upstream1"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 1" /></a><span class="logo-empty">Upstream 1</span></div>
+                <div class="logo-slot" data-slot="upstream2"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 2" /></a><span class="logo-empty">Upstream 2</span></div>
+                <div class="logo-slot" data-slot="upstream3"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 3" /></a><span class="logo-empty">Upstream 3</span></div>
+              </div>
+
+              <div class="integration-center">
+                <div class="integration-arrow">➜</div>
+                <div class="indico-core"><img src="images/ioblueandwhite.png" alt="Indico Data" id="integrationIndicoLogo" /></div>
+                <div class="integration-arrow">➜</div>
+              </div>
+
+              <div class="integration-column">
+                <h3>Downstream Systems</h3>
+                <div class="logo-slot" data-slot="downstream1"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 1" /></a><span class="logo-empty">Downstream 1</span></div>
+                <div class="logo-slot" data-slot="downstream2"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 2" /></a><span class="logo-empty">Downstream 2</span></div>
+                <div class="logo-slot" data-slot="downstream3"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 3" /></a><span class="logo-empty">Downstream 3</span></div>
+              </div>
+            </div>
+            <button type="button" class="presentation-toggle" id="presentationToggle" aria-expanded="true">
+              <i class="fas fa-compress-alt"></i> Presentation Mode
+            </button>
+            <div class="integration-controls" id="integrationControls"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Panel -->
+
+      <div class="tab-panel customer" id="panel-customer">
+        <div class="panel-box">
+
+          <!-- Panel Header -->
+          <div class="panel-header">
+            <div class="panel-icon operate">
+              <i class="fas fa-line-chart"></i>
+            </div>
+            <h2 class="panel-title">Focus Points</h2>
+          </div>
+
+          <!-- Full-width Focus Buttons -->
+          <div class="customer-focus-grid">
+            <a href="https://try.indico.io/teach/extraction-studio/5806?targetId=96497" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Submission-to-Downstream Systems in minutes">
+              <i class="fas fa-stopwatch"></i><span>Submission-to-Downstream Systems in minutes</span>
+            </a>
+            <a href="https://insights.ins-try-eu.eu-west-2.indico-prod.indico.io" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Deep file understanding and inference">
+              <i class="fas fa-brain"></i><span>Deep file understanding and inference: summary + compare + next steps</span>
+            </a>
+            <a href="https://insights.ins-enrich.us-east-2.indico-dev.indico.io/review/29?selectedDocId=107&tab=review" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Powering broker-ready outputs">
+              <i class="fas fa-file-signature"></i><span>Powering broker-ready outputs: risk reports & market presentations</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Config Overlay -->
+  <div class="config-overlay" id="configOverlay"></div>
+
+  <!-- Config Button -->
+  <button class="config-btn" id="configBtn" title="Settings">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <!-- Config Panel -->
+  <div class="config-panel" id="configPanel">
+    <div class="config-header">
+      <h3>Settings</h3>
+      <button class="config-close" id="configClose"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <div class="config-body">
+      <!-- Theme Toggle -->
+      <div class="config-section">
+        <label class="config-label">Theme</label>
+        <div class="theme-toggle">
+          <button class="theme-btn active" data-theme="dark">
+            <i class="fas fa-moon"></i> Dark
+          </button>
+          <button class="theme-btn" data-theme="light">
+            <i class="fas fa-sun"></i> Light
+          </button>
+        </div>
+      </div>
+
+      <!-- Indico Logo Upload -->
+      <div class="config-section">
+        <label class="config-label">Indico Logo</label>
+        <div class="logo-upload-area">
+          <div class="current-logo">
+            <img id="indicoLogoPreview" src="indico_logo.png" alt="Indico Logo" />
+          </div>
+          <label class="upload-btn">
+            <i class="fas fa-upload"></i> Upload New Logo
+            <input type="file" id="indicoLogoUpload" accept="image/*" hidden />
+          </label>
+          <button class="reset-logo-btn" id="resetIndicoLogo">
+            <i class="fas fa-undo"></i> Reset to Default
+          </button>
+        </div>
+      </div>
+
+      <!-- Customer Logo Upload -->
+      <div class="config-section">
+        <label class="config-label">Customer Logo</label>
+        <div class="logo-upload-area">
+          <div class="current-logo">
+            <img id="customerLogoPreview" src="" alt="Customer Logo" style="display: none;" />
+            <span id="customerLogoPlaceholder" class="logo-placeholder"><i class="fas fa-plus"></i> Add Logo</span>
+          </div>
+          <label class="upload-btn">
+            <i class="fas fa-upload"></i> Upload New Logo
+            <input type="file" id="logoUpload" accept="image/*" hidden />
+          </label>
+          <button class="reset-logo-btn" id="resetLogo">
+            <i class="fas fa-trash"></i> Remove Logo
+          </button>
+        </div>
+      </div>
+
+      <!-- Second Logo Upload (Optional) -->
+      <div class="config-section">
+        <label class="config-label">Second Logo (Optional)</label>
+        <div class="logo-upload-area">
+          <div class="current-logo" id="secondLogoPreviewContainer">
+            <img id="secondLogoPreview" src="" alt="Second Logo" style="display: none;" />
+            <span id="secondLogoPlaceholder" class="logo-placeholder"><i class="fas fa-plus"></i> Add Logo</span>
+          </div>
+          <label class="upload-btn">
+            <i class="fas fa-upload"></i> Upload Second Logo
+            <input type="file" id="secondLogoUpload" accept="image/*" hidden />
+          </label>
+          <button class="reset-logo-btn" id="resetSecondLogo">
+            <i class="fas fa-trash"></i> Remove Second Logo
+          </button>
+        </div>
+      </div>
+
+      <!-- Link Editor -->
+      <div class="config-section">
+        <label class="config-label">Feature Links</label>
+        <div class="links-editor" id="linksEditor">
+          <!-- Links will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <div class="config-footer">
+      <button class="config-save-btn" id="configSave">
+        <i class="fas fa-check"></i> Save Changes
+      </button>
+      <div class="config-footer-row">
+        <button class="config-download-btn" id="configDownload">
+          <i class="fas fa-download"></i> Download Config
+        </button>
+        <label class="config-upload-btn" id="configUploadLabel">
+          <i class="fas fa-upload"></i> Load Config
+          <input type="file" id="configUpload" accept=".json" hidden />
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Track the user's chosen landing page theme
+    let userChosenTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+
+    const panelNav = document.getElementById('panelNav');
+    const screenMap = {
+      main: { label: 'Main', icon: 'fa-house' },
+      'london-market': { label: 'Integrations', icon: 'fa-landmark' },
+      operate: { label: 'Workspaces', icon: 'fa-play' },
+      orchestrate: { label: 'Agent Studio', icon: 'fa-sliders-h' },
+      customer: { label: 'Focus Points', icon: 'fa-line-chart' }
+    };
+
+    let currentScreen = 'main';
+
+    function renderPanelNav(currentScreen) {
+      panelNav.innerHTML = '';
+      Object.entries(screenMap).forEach(([key, config]) => {
+        if (key === currentScreen) {
+          return;
+        }
+
+        const button = document.createElement('button');
+        button.className = 'panel-nav-btn';
+        button.innerHTML = `<i class="fas ${config.icon}"></i><span>${config.label}</span>`;
+        button.addEventListener('click', () => navigateToScreen(key));
+        panelNav.appendChild(button);
+      });
+    }
+
+    function navigateToScreen(targetScreen) {
+      if (targetScreen === 'main') {
+        document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('configBtn').style.display = '';
+
+        if (userChosenTheme === 'light') {
+          document.body.classList.add('light-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+        }
+        currentScreen = 'main';
+        return;
+      }
+
+      if (currentScreen === 'main') {
+        userChosenTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+      }
+
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      document.getElementById(`panel-${targetScreen}`).classList.add('active');
+      document.getElementById('configBtn').style.display = 'none';
+
+      if (targetScreen === 'operate') {
+        document.body.classList.add('light-theme');
+      } else if (targetScreen === 'orchestrate') {
+        document.body.classList.remove('light-theme');
+      } else if (targetScreen === 'customer') {
+        if (userChosenTheme === 'light') {
+          document.body.classList.add('light-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+        }
+      }
+
+      currentScreen = targetScreen;
+      renderPanelNav(targetScreen);
+      document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Hero nav buttons - navigate to correct panel
+    document.querySelectorAll('.hero-nav-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        navigateToScreen(button.dataset.target);
+      });
+    });
+
+
+
+    // Integrations interactions
+    const integrationSlots = {
+      upstream1: 'Upstream 1',
+      upstream2: 'Upstream 2',
+      upstream3: 'Upstream 3',
+      downstream1: 'Downstream 1',
+      downstream2: 'Downstream 2',
+      downstream3: 'Downstream 3'
+    };
+
+    const integrationDefaults = {
+      upstream1: { image: 'images/exchange.png', url: '' },
+      upstream2: { image: 'images/call.png', url: 'https://drive.google.com/drive/u/0/folders/1mjCqhXSjnKVDxuTeJgVeWThOrh9PfGg_' },
+      upstream3: { image: 'images/file_store.png', url: 'https://drive.google.com/drive/u/0/folders/1YGWYcXFuCcXm2wTdprHKeahPCRonUBa6?q=type:archive%20parent:1YGWYcXFuCcXm2wTdprHKeahPCRonUBa6' },
+      downstream1: { image: 'images/acturis.png', url: 'https://www.acturis.com/blog/2024/12/13/aviva-and-acturis-launch-ground-breaking-broker-api-to-simplify-claims-process/' },
+      downstream2: { image: 'images/guidewire.png', url: 'https://marketplace.guidewire.com/product/indico-data-accelerator-for-intelligent-intake-for-policycenter/01t3n00000SqGx1AAF?tab=Media' },
+      downstream3: { image: '', url: '' }
+    };
+
+    const integrationControls = document.getElementById('integrationControls');
+    const presentationToggle = document.getElementById('presentationToggle');
+    const integrationShell = document.querySelector('.integration-shell');
+
+    function setSlotImage(slotId, dataUrl) {
+      const slot = document.querySelector(`.logo-slot[data-slot="${slotId}"]`);
+      const img = slot.querySelector('img');
+      img.src = dataUrl || '';
+      slot.classList.toggle('has-image', Boolean(dataUrl));
+    }
+
+    function setSlotUrl(slotId, url) {
+      const link = document.querySelector(`.logo-slot[data-slot="${slotId}"] .logo-link`);
+      link.href = (url || '').trim() || '#';
+    }
+
+    function buildIntegrationControls() {
+      if (!integrationControls) return;
+      integrationControls.innerHTML = '';
+
+      Object.entries(integrationSlots).forEach(([slotId, label]) => {
+        const control = document.createElement('div');
+        control.className = 'slot-control';
+        control.dataset.slotControl = slotId;
+        control.innerHTML = `
+          <h4>${label}</h4>
+          <input type="url" placeholder="https://example.com" />
+          <div class="slot-actions">
+            <label>Upload Logo<input type="file" accept="image/*" hidden /></label>
+            <button type="button" class="remove">Remove</button>
+          </div>
+        `;
+
+        const fileInput = control.querySelector('input[type="file"]');
+        const urlInput = control.querySelector('input[type="url"]');
+        const removeBtn = control.querySelector('.remove');
+        const defaultSlot = integrationDefaults[slotId];
+        if (defaultSlot && defaultSlot.url) {
+          urlInput.value = defaultSlot.url;
+        }
+
+        fileInput.addEventListener('change', (event) => {
+          const file = event.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (e) => setSlotImage(slotId, e.target.result);
+          reader.readAsDataURL(file);
+        });
+
+        urlInput.addEventListener('input', () => setSlotUrl(slotId, urlInput.value));
+
+        removeBtn.addEventListener('click', () => {
+          setSlotImage(slotId, '');
+          setSlotUrl(slotId, '#');
+          urlInput.value = '';
+          fileInput.value = '';
+        });
+
+        integrationControls.appendChild(control);
+      });
+    }
+
+
+    function initializeIntegrationDefaults() {
+      Object.entries(integrationDefaults).forEach(([slotId, config]) => {
+        setSlotImage(slotId, config.image);
+        setSlotUrl(slotId, config.url);
+      });
+    }
+
+    if (presentationToggle && integrationShell) {
+      presentationToggle.addEventListener('click', () => {
+        integrationShell.classList.toggle('presentation-mode');
+        const isExpanded = !integrationShell.classList.contains('presentation-mode');
+        presentationToggle.setAttribute('aria-expanded', String(isExpanded));
+        presentationToggle.innerHTML = isExpanded
+          ? '<i class="fas fa-compress-alt"></i> Presentation Mode'
+          : '<i class="fas fa-expand-alt"></i> Edit Mode';
+      });
+    }
+
+    const integrationMap = document.getElementById('integrationMap');
+    if (integrationMap) {
+      integrationMap.addEventListener('click', (event) => {
+        const link = event.target.closest('.logo-link');
+        if (link && link.getAttribute('href') === '#') {
+          event.preventDefault();
+        }
+      });
+    }
+
+    buildIntegrationControls();
+    initializeIntegrationDefaults();
+
+    // ===== CONFIG PANEL =====
+    const configBtn = document.getElementById('configBtn');
+    const configPanel = document.getElementById('configPanel');
+    const configOverlay = document.getElementById('configOverlay');
+    const configClose = document.getElementById('configClose');
+    const configSave = document.getElementById('configSave');
+    const linksEditor = document.getElementById('linksEditor');
+    const logoUpload = document.getElementById('logoUpload');
+    const customerLogoPreview = document.getElementById('customerLogoPreview');
+    const resetLogo = document.getElementById('resetLogo');
+    const heroCustomerLogo = document.getElementById('customerLogo');
+
+    // Indico logo elements
+    const indicoLogoUpload = document.getElementById('indicoLogoUpload');
+    const indicoLogoPreview = document.getElementById('indicoLogoPreview');
+    const resetIndicoLogo = document.getElementById('resetIndicoLogo');
+    const heroIndicoLogo = document.querySelector('.indico-logo');
+
+    // Second logo elements
+    const secondLogoUpload = document.getElementById('secondLogoUpload');
+    const secondLogoPreview = document.getElementById('secondLogoPreview');
+    const secondLogoPlaceholder = document.getElementById('secondLogoPlaceholder');
+    const resetSecondLogo = document.getElementById('resetSecondLogo');
+    const heroSecondLogo = document.getElementById('secondLogo');
+    const heroSecondConnector = document.getElementById('secondConnector');
+
+    // Customer connector element
+    const heroCustomerConnector = document.getElementById('customerConnector');
+    const customerLogoPlaceholder = document.getElementById('customerLogoPlaceholder');
+
+    const defaultIndicoLogoSrc = 'indico_logo.png';
+    let currentLinks = [];
+
+    // Open config panel
+    configBtn.addEventListener('click', () => {
+      configPanel.classList.add('active');
+      configOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      populateLinksEditor();
+    });
+
+    // Close config panel
+    function closeConfigPanel() {
+      configPanel.classList.remove('active');
+      configOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    configClose.addEventListener('click', closeConfigPanel);
+    configOverlay.addEventListener('click', closeConfigPanel);
+
+    // Theme toggle
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        if (btn.dataset.theme === 'light') {
+          document.body.classList.add('light-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+        }
+        // Update tracked landing page theme
+        userChosenTheme = btn.dataset.theme;
+      });
+    });
+
+    // Indico logo upload
+    indicoLogoUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const dataUrl = event.target.result;
+          indicoLogoPreview.src = dataUrl;
+          heroIndicoLogo.src = dataUrl;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Reset Indico logo
+    resetIndicoLogo.addEventListener('click', () => {
+      indicoLogoPreview.src = defaultIndicoLogoSrc;
+      heroIndicoLogo.src = defaultIndicoLogoSrc;
+      indicoLogoUpload.value = '';
+    });
+
+    // Logo upload
+    logoUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const dataUrl = event.target.result;
+          // Update preview
+          customerLogoPreview.src = dataUrl;
+          customerLogoPreview.style.display = '';
+          customerLogoPlaceholder.style.display = 'none';
+          // Update hero - show connector and logo
+          heroCustomerLogo.src = dataUrl;
+          heroCustomerLogo.style.display = '';
+          heroCustomerConnector.style.display = '';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Reset/remove customer logo
+    resetLogo.addEventListener('click', () => {
+      customerLogoPreview.src = '';
+      customerLogoPreview.style.display = 'none';
+      customerLogoPlaceholder.style.display = '';
+      logoUpload.value = '';
+      // Hide in hero
+      heroCustomerLogo.src = '';
+      heroCustomerLogo.style.display = 'none';
+      heroCustomerConnector.style.display = 'none';
+    });
+
+    // Second logo upload
+    secondLogoUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const dataUrl = event.target.result;
+          // Update preview
+          secondLogoPreview.src = dataUrl;
+          secondLogoPreview.style.display = '';
+          secondLogoPlaceholder.style.display = 'none';
+          // Update hero
+          heroSecondLogo.src = dataUrl;
+          heroSecondLogo.style.display = '';
+          heroSecondConnector.style.display = '';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Reset/remove second logo
+    resetSecondLogo.addEventListener('click', () => {
+      secondLogoPreview.src = '';
+      secondLogoPreview.style.display = 'none';
+      secondLogoPlaceholder.style.display = '';
+      secondLogoUpload.value = '';
+      // Hide in hero
+      heroSecondLogo.src = '';
+      heroSecondLogo.style.display = 'none';
+      heroSecondConnector.style.display = 'none';
+    });
+
+    // Populate links editor - now includes both feature-tile and customer-focus-btn
+    function populateLinksEditor() {
+      const links = document.querySelectorAll('.feature-tile, .customer-focus-btn');
+      linksEditor.innerHTML = '';
+      currentLinks = [];
+
+      links.forEach((link, index) => {
+        const title = link.dataset.title;
+        const href = link.getAttribute('href');
+        const icon = link.querySelector('i').className;
+        
+        currentLinks.push({ element: link, title, href, icon });
+
+        const linkItem = document.createElement('div');
+        linkItem.className = 'link-item';
+        linkItem.innerHTML = `
+          <div class="link-item-header">
+            <i class="${icon}"></i>
+            <span>${title}</span>
+          </div>
+          <input type="url" value="${href}" data-index="${index}" placeholder="Enter URL..." />
+        `;
+        linksEditor.appendChild(linkItem);
+      });
+    }
+
+    // Save changes
+    configSave.addEventListener('click', () => {
+      // Update all link URLs
+      const inputs = linksEditor.querySelectorAll('input');
+      inputs.forEach(input => {
+        const index = parseInt(input.dataset.index);
+        const newUrl = input.value.trim();
+        if (newUrl && currentLinks[index]) {
+          currentLinks[index].element.setAttribute('href', newUrl);
+        }
+      });
+
+      // Show save confirmation
+      const originalText = configSave.innerHTML;
+      configSave.innerHTML = '<i class="fas fa-check"></i> Saved!';
+      configSave.style.background = '#22c55e';
+      
+      setTimeout(() => {
+        configSave.innerHTML = originalText;
+        configSave.style.background = '';
+        closeConfigPanel();
+      }, 1000);
+    });
+
+    // Download configuration
+    const configDownload = document.getElementById('configDownload');
+    configDownload.addEventListener('click', () => {
+      // Build configuration object
+      const config = {
+        theme: document.body.classList.contains('light-theme') ? 'light' : 'dark',
+        logos: {
+          indico: heroIndicoLogo.src,
+          customer: heroCustomerLogo.style.display !== 'none' ? heroCustomerLogo.src : null,
+          second: heroSecondLogo.style.display !== 'none' ? heroSecondLogo.src : null
+        },
+        links: {}
+      };
+
+      // Gather all feature tile and customer focus btn links
+      document.querySelectorAll('.feature-tile, .customer-focus-btn').forEach(link => {
+        const title = link.dataset.title;
+        config.links[title] = link.getAttribute('href');
+      });
+
+      // Create and download JSON file
+      const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'indico-demo-config.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // Show download confirmation
+      const originalText = configDownload.innerHTML;
+      configDownload.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+      configDownload.style.borderColor = '#22c55e';
+      configDownload.style.color = '#22c55e';
+      
+      setTimeout(() => {
+        configDownload.innerHTML = originalText;
+        configDownload.style.borderColor = '';
+        configDownload.style.color = '';
+      }, 1500);
+    });
+
+    // Load configuration
+    const configUpload = document.getElementById('configUpload');
+    const configUploadLabel = document.getElementById('configUploadLabel');
+    
+    configUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const config = JSON.parse(event.target.result);
+
+          // Apply theme
+          if (config.theme === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.theme-btn[data-theme="light"]').classList.add('active');
+            userChosenTheme = 'light';
+          } else {
+            document.body.classList.remove('light-theme');
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.theme-btn[data-theme="dark"]').classList.add('active');
+            userChosenTheme = 'dark';
+          }
+
+          // Apply logos
+          if (config.logos) {
+            if (config.logos.indico) {
+              heroIndicoLogo.src = config.logos.indico;
+              indicoLogoPreview.src = config.logos.indico;
+            }
+            if (config.logos.customer) {
+              heroCustomerLogo.src = config.logos.customer;
+              heroCustomerLogo.style.display = '';
+              heroCustomerConnector.style.display = '';
+              customerLogoPreview.src = config.logos.customer;
+              customerLogoPreview.style.display = '';
+              customerLogoPlaceholder.style.display = 'none';
+            } else {
+              heroCustomerLogo.style.display = 'none';
+              heroCustomerConnector.style.display = 'none';
+              customerLogoPreview.style.display = 'none';
+              customerLogoPlaceholder.style.display = '';
+            }
+            if (config.logos.second) {
+              heroSecondLogo.src = config.logos.second;
+              heroSecondLogo.style.display = '';
+              heroSecondConnector.style.display = '';
+              secondLogoPreview.src = config.logos.second;
+              secondLogoPreview.style.display = '';
+              secondLogoPlaceholder.style.display = 'none';
+            } else {
+              heroSecondLogo.style.display = 'none';
+              heroSecondConnector.style.display = 'none';
+              secondLogoPreview.style.display = 'none';
+              secondLogoPlaceholder.style.display = '';
+            }
+          }
+
+          // Apply links
+          if (config.links) {
+            document.querySelectorAll('.feature-tile, .customer-focus-btn').forEach(link => {
+              const title = link.dataset.title;
+              if (config.links[title]) {
+                link.setAttribute('href', config.links[title]);
+              }
+            });
+          }
+
+          // Refresh links editor
+          populateLinksEditor();
+
+          // Show success
+          const originalHTML = configUploadLabel.innerHTML;
+          configUploadLabel.innerHTML = '<i class="fas fa-check"></i> Loaded!';
+          configUploadLabel.style.borderColor = '#22c55e';
+          configUploadLabel.style.color = '#22c55e';
+          
+          setTimeout(() => {
+            configUploadLabel.innerHTML = originalHTML;
+            configUploadLabel.style.borderColor = '';
+            configUploadLabel.style.color = '';
+          }, 1500);
+
+        } catch (err) {
+          alert('Invalid configuration file');
+        }
+      };
+      reader.readAsText(file);
+      configUpload.value = ''; // Reset for re-upload
+    });
+  </script>
+
+</body>
+</html>
