@@ -1697,6 +1697,7 @@
     const customerLogoPlaceholder = document.getElementById('customerLogoPlaceholder');
 
     const defaultSnowflakeLogoSrc = 'images/snowflake_logo.png';
+    const defaultCustomerLogoSrc = 'images/phoenix_logo.png';
     let currentLinks = [];
 
     // Open config panel
@@ -1774,16 +1775,16 @@
       }
     });
 
-    // Reset/remove customer logo
+    // Reset customer logo to the repository default
     resetLogo.addEventListener('click', () => {
-      customerLogoPreview.src = '';
-      customerLogoPreview.style.display = 'none';
-      customerLogoPlaceholder.style.display = '';
+      customerLogoPreview.src = defaultCustomerLogoSrc;
+      customerLogoPreview.style.display = '';
+      customerLogoPlaceholder.style.display = 'none';
       logoUpload.value = '';
-      // Hide in hero
-      heroCustomerLogo.src = '';
-      heroCustomerLogo.style.display = 'none';
-      heroCustomerConnector.style.display = 'none';
+      // Restore the repository default in the hero
+      heroCustomerLogo.src = defaultCustomerLogoSrc;
+      heroCustomerLogo.style.display = '';
+      heroCustomerConnector.style.display = '';
     });
 
     // Second logo upload
