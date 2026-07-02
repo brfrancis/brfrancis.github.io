@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Indico | Platform Demo</title>
-  <link rel="icon" href="https://static.wixstatic.com/media/2d5ad3_b39f8d65d93b46abb66ad1c01a134fc1~mv2.png" type="image/png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="https://static.wixstatic.com/media/2d5ad3_b39f8d65d93b46abb66ad1c01a134fc1~mv2.png" />
+  <title>Snowflake | Phoenix Group Demo</title>
+  <link rel="icon" href="images/snowflake_logo.png" type="image/png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/snowflake_logo.png" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +15,14 @@
     :root {
       --bg-black: #000000;
       --bg-elevated: #0a0a0a;
-      --accent-orange: #FAA61A;
-      --accent-orange-dim: rgba(250, 166, 26, 0.12);
-      --accent-blue: #00AEEF;
-      --accent-blue-dim: rgba(0, 174, 239, 0.12);
-	  --accent-iblue: #0077ff;
-      --accent-iblue-dim: rgba(79, 121, 66, 0.12);
+      --accent-orange: #29B5E8;
+      --accent-orange-dim: rgba(41, 181, 232, 0.14);
+      --accent-blue: #75D4F7;
+      --accent-blue-dim: rgba(117, 212, 247, 0.14);
+      --accent-white: #ffffff;
+      --accent-white-dim: rgba(255, 255, 255, 0.12);
+	  --accent-iblue: #29B5E8;
+      --accent-iblue-dim: rgba(41, 181, 232, 0.12);
       --panel-bg: rgba(255, 255, 255, 0.03);
       --panel-border: rgba(255, 255, 255, 0.12);
       --panel-border-hover: rgba(255, 255, 255, 0.25);
@@ -210,7 +212,7 @@
 
     .hero-nav-btn.london-market:hover {
       border-color: var(--accent-orange);
-      background: rgba(250, 166, 26, 0.18);
+      background: rgba(41, 181, 232, 0.18);
     }
 
     .hero-nav-btn.london-market .hero-nav-icon {
@@ -628,7 +630,7 @@
       --text-muted: #6b7280;
     }
 
-    body.light-theme .partnership-header img.indico-logo {
+    body.light-theme .partnership-header img.snowflake-logo {
       filter: invert(1);
       background: transparent;
       mix-blend-mode: multiply;
@@ -1096,7 +1098,7 @@
 
     .lm-value-list li {
       border: 1px solid var(--accent-orange-dim);
-      background: rgba(250, 166, 26, 0.12);
+      background: rgba(41, 181, 232, 0.12);
       color: var(--accent-orange);
       border-radius: 999px;
       padding: 0.35rem 0.75rem;
@@ -1133,16 +1135,19 @@
     .logo-slot.has-image .logo-empty { display: none; }
     .logo-link { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
     .integration-center { display: flex; align-items: center; gap: 0.8rem; }
-    .indico-core {
+    .snowflake-core {
       width: 230px;
       height: 230px;
       border-radius: 999px;
       background: radial-gradient(circle at top, #003f8a, #062b56 65%);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .indico-core img { width: 130px; }
+    .snowflake-core img { width: 130px; }
+    .snowflake-core span { margin-top: 0.75rem; color: var(--text-secondary); font-weight: 700; text-align: center; font-size: 0.9rem; }
+    .blueprint-map { grid-template-columns: 1fr auto 1fr 1fr; }
     .integration-arrow { color: #1987ff; font-size: 2rem; }
     .integration-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
     .presentation-toggle {
@@ -1310,35 +1315,33 @@
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="partnership-header">
-      <img src="" alt="Customer" class="customer-logo" id="customerLogo" style="display: none;" />
+      <img src="images/phoenix_group_logo.png" alt="Phoenix Group" class="customer-logo" id="customerLogo" />
       <span class="partnership-connector second-connector" id="secondConnector" style="display: none;">×</span>
       <img src="" alt="Partner" class="customer-logo" id="secondLogo" style="display: none;" />
-      <span class="partnership-connector" id="customerConnector" style="display: none;">×</span>
-      <img src="images/indico_logo.png" alt="Indico Data" class="indico-logo" />
+      <span class="partnership-connector" id="customerConnector">×</span>
+      <img src="images/snowflake_logo.png" alt="Snowflake" class="snowflake-logo" />
     </div>
-    <h1 class="hero-headline">The Intake & Orchestration Platform<br><span>for Insurance Operations</span></h1>
-    <p class="hero-subtitle">Indico is the operations layer that modernizes how work enters and moves through the enterprise.</p>
+    <h1 class="hero-headline">The AI Data Cloud<br><span>for Phoenix Group</span></h1>
+    <p class="hero-subtitle">Unifying policy, investment, finance and customer data to power growth, efficiency and trusted AI.</p>
     
     <div class="hero-nav">
-      <button class="hero-nav-btn london-market" data-target="london-market">
-        <span class="hero-nav-icon"><i class="fas fa-landmark"></i></span>
-        <span>Integrations</span>
+      <button class="hero-nav-btn orchestrate" data-target="customer-intelligence">
+        <span class="hero-nav-icon"><i class="fas fa-users-viewfinder"></i></span>
+        <span>Customer Intelligence</span>
+      </button>
+      <button class="hero-nav-btn operate" data-target="operational-simplification">
+        <span class="hero-nav-icon"><i class="fas fa-layer-group"></i></span>
+        <span>Operational Simplification</span>
       </button>
     </div>
     <div class="hero-nav">
-      <button class="hero-nav-btn operate" data-target="operate">
-        <span class="hero-nav-icon"><i class="fas fa-play"></i></span>
-        <span>Workspaces</span>
+      <button class="hero-nav-btn customer" data-target="trusted-ai">
+        <span class="hero-nav-icon"><i class="fas fa-shield-halved"></i></span>
+        <span>Trusted AI</span>
       </button>
-      <button class="hero-nav-btn orchestrate" data-target="orchestrate">
-        <span class="hero-nav-icon"><i class="fas fa-sliders-h"></i></span>
-        <span>Agent Studio</span>
-      </button>
-    </div>
-    <div class="hero-nav">
-      <button class="hero-nav-btn customer" data-target="customer">
-        <span class="hero-nav-icon"><i class="fas fa-line-chart"></i></span>
-        <span>Focus Points</span>
+      <button class="hero-nav-btn london-market" data-target="solution-blueprint">
+        <span class="hero-nav-icon"><i class="fas fa-diagram-project"></i></span>
+        <span>Solution Blueprint</span>
       </button>
     </div>
   </section>
@@ -1349,213 +1352,26 @@
 
       <div class="panel-nav" id="panelNav"></div>
 
-      <!-- Agent Studio Panel -->
-      <div class="tab-panel orchestrate" id="panel-orchestrate">
+      <!-- Unified Customer Intelligence Panel -->
+      <div class="tab-panel orchestrate" id="panel-customer-intelligence">
         <div class="panel-box">
-
-          <!-- Panel Header -->
-          <div class="panel-header">
-            <div class="panel-icon orchestrate">
-              <i class="fas fa-sliders-h"></i>
-            </div>
-            <h2 class="panel-title">Indico Agent Studio</h2>
-          </div>
-
-          <!-- Description + Personas Row -->
+          <div class="panel-header"><div class="panel-icon orchestrate"><i class="fas fa-users-viewfinder"></i></div><h2 class="panel-title">Unified Customer Intelligence</h2></div>
           <div class="description-personas-row">
-            <!-- Orchestrate -->
-            <div class="section-block" style="margin-bottom: 0;">
-              <div class="section-header">
-                <i class="fas fa-cogs"></i>
-                <h3 class="section-title">Orchestrate</h3>
-              </div>
-              <ul class="capability-list">
-                <li><i class="fas fa-rocket"></i><span>Scalable & traceable AI workflows</span></li>
-                <li><i class="fas fa-network-wired"></i><span>Low-code/no-code Agentic AI orchestration</span></li>
-                <li><i class="fas fa-wrench"></i><span>Configure, test & launch your agents in minutes</span></li>
-              </ul>
-            </div>
-
-            <!-- Personas -->
-            <div class="section-block" style="margin-bottom: 0;">
-              <div class="section-header">
-                <i class="fas fa-users"></i>
-                <h3 class="section-title">Core Personas</h3>
-              </div>
-              <ul class="capability-list">
-                <li><i class="fas fa-user-tie"></i><span>Technical & Data SMEs</span></li>
-                <li><i class="fas fa-project-diagram"></i><span>Process Architects</span></li>
-                <li><i class="fas fa-server"></i><span>AI & IT Operations</span></li>
-                <li><i class="fas fa-shield-alt"></i><span>Compliance & Risk Leaders</span></li>
-              </ul>
-            </div>
+            <div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-circle-exclamation"></i><h3 class="section-title">From fragmented books to customer intelligence</h3></div><ul class="capability-list"><li><i class="fas fa-snowflake"></i><span>Cold legacy policy data is disconnected from hot investment data.</span></li><li><i class="fas fa-snowflake"></i><span>Phoenix needs a single customer view across pensions, savings, policy, servicing and investment activity.</span></li><li><i class="fas fa-snowflake"></i><span>Fragmentation limits Consumer Duty insight, retention intelligence and personalised engagement.</span></li></ul></div>
+            <div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-chart-line"></i><h3 class="section-title">Business Outcomes</h3></div><ul class="capability-list"><li><i class="fas fa-check"></i><span>Better customer retention</span></li><li><i class="fas fa-check"></i><span>Stronger Consumer Duty alignment</span></li><li><i class="fas fa-check"></i><span>Improved customer lifetime value</span></li><li><i class="fas fa-check"></i><span>More personalised pension engagement</span></li></ul></div>
           </div>
-
-          <!-- Key Features -->
-          <div class="section-block" style="margin-bottom: 0;">
-            <div class="section-header">
-              <i class="fas fa-puzzle-piece"></i>
-              <h3 class="section-title">Key Features</h3>
-            </div>
-            <div class="feature-grid">
-              <a href="https://try.indico.io/gallery/agents" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Agent Gallery">
-                <i class="fas fa-images"></i><span>Agent Gallery</span>
-              </a>
-              <a href="https://dev-indico.pythonanywhere.com/prompts" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Field & Prompt Gallery">
-                <i class="fas fa-comment-dots"></i><span>Field & Prompt Gallery</span>
-              </a>
-              <a href="https://try.indico.io/teach/extraction-studio/5806?targetId=96497" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Extraction Studio">
-                <i class="fas fa-file-excel"></i><span>Extraction Studio</span>
-              </a>
-              <a href="https://try.indico.io/teach/summarization/5805" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Summarization Studio">
-                <i class="fas fa-list-alt"></i><span>Summarization Studio</span>
-              </a>
-              <a href="https://try.indico.io/workflows/4997/details/canvas" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Workflow Canvas">
-                <i class="fas fa-sitemap"></i><span>Workflow Canvas</span>
-              </a>
-              <a href="https://dev-indico.pythonanywhere.com/workspace-config/" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Workspace Editor">
-                <i class="fas fa-user-check"></i><span>Workspace Editor</span>
-              </a>
-            </div>
-          </div>
-
+          <div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-cloud"></i><h3 class="section-title">Snowflake Outcomes</h3></div><div class="feature-grid"><a href="#" class="feature-tile" data-title="Governed customer 360"><i class="fas fa-user-shield"></i><span>Governed customer 360</span></a><a href="#" class="feature-tile" data-title="Cross-domain analytics"><i class="fas fa-chart-network"></i><span>Cross-domain analytics</span></a><a href="#" class="feature-tile" data-title="Shared customer data products"><i class="fas fa-boxes-stacked"></i><span>Shared customer Data Products</span></a><a href="#" class="feature-tile" data-title="Real-time segmentation and insight"><i class="fas fa-bolt"></i><span>Real-time segmentation and insight</span></a></div></div>
         </div>
       </div>
 
-      <!-- Workspaces Panel -->
-      <div class="tab-panel operate" id="panel-operate">
-        <div class="panel-box">
+      <!-- Operational Simplification Panel -->
+      <div class="tab-panel operate" id="panel-operational-simplification"><div class="panel-box"><div class="panel-header"><div class="panel-icon operate"><i class="fas fa-layer-group"></i></div><h2 class="panel-title">Operational Simplification</h2></div><div class="description-personas-row"><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-gauge-high"></i><h3 class="section-title">Reduce platform sprawl, increase decision speed</h3></div><ul class="capability-list"><li><i class="fas fa-snowflake"></i><span>Phoenix has a multi-cloud estate across AWS and Azure.</span></li><li><i class="fas fa-snowflake"></i><span>It has legacy footprint in Teradata and SQL Server.</span></li><li><i class="fas fa-snowflake"></i><span>Databricks is used for actuarial modelling and risk analytics.</span></li><li><i class="fas fa-snowflake"></i><span>Data movement and duplicated engineering create operational drag.</span></li></ul></div><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-briefcase"></i><h3 class="section-title">Business Outcomes</h3></div><ul class="capability-list"><li><i class="fas fa-check"></i><span>Lower platform complexity</span></li><li><i class="fas fa-check"></i><span>Reduced reconciliation effort</span></li><li><i class="fas fa-check"></i><span>Faster finance and actuarial reporting</span></li><li><i class="fas fa-check"></i><span>Lower total cost of ownership</span></li></ul></div></div><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-cloud"></i><h3 class="section-title">Snowflake Outcomes</h3></div><div class="feature-grid"><a href="#" class="feature-tile" data-title="Enterprise governed data layer"><i class="fas fa-database"></i><span>Enterprise governed data layer</span></a><a href="#" class="feature-tile" data-title="Workload Isolation"><i class="fas fa-cubes"></i><span>Workload Isolation</span></a><a href="#" class="feature-tile" data-title="Secure Data Sharing"><i class="fas fa-share-nodes"></i><span>Secure Data Sharing</span></a><a href="#" class="feature-tile" data-title="Shared business logic"><i class="fas fa-code-branch"></i><span>Shared business logic</span></a><a href="#" class="feature-tile" data-title="Multi-cloud interoperability"><i class="fas fa-cloud-arrow-up"></i><span>Multi-cloud interoperability</span></a></div></div></div></div>
 
-          <!-- Panel Header -->
-          <div class="panel-header">
-            <div class="panel-icon operate">
-              <i class="fas fa-play"></i>
-            </div>
-            <h2 class="panel-title">Indico Workspaces</h2>
-          </div>
+      <!-- Trusted AI Panel -->
+      <div class="tab-panel customer" id="panel-trusted-ai"><div class="panel-box"><div class="panel-header"><div class="panel-icon operate"><i class="fas fa-shield-halved"></i></div><h2 class="panel-title">Trusted AI at Scale</h2></div><div class="description-personas-row"><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-brain"></i><h3 class="section-title">Industrialise AI without increasing data tax</h3></div><ul class="capability-list"><li><i class="fas fa-snowflake"></i><span>Phoenix wants to explore GenAI for claims processing and personalised pension guidance.</span></li><li><i class="fas fa-snowflake"></i><span>Leadership is concerned about data movement, governance, auditability and complexity between platforms.</span></li></ul></div><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-award"></i><h3 class="section-title">Business Outcomes</h3></div><ul class="capability-list"><li><i class="fas fa-check"></i><span>Faster AI adoption</span></li><li><i class="fas fa-check"></i><span>Reduced AI operating risk</span></li><li><i class="fas fa-check"></i><span>Stronger auditability</span></li><li><i class="fas fa-check"></i><span>Higher trust in AI-assisted decisions</span></li></ul></div></div><div class="section-block" style="margin-bottom: 0;"><div class="section-header"><i class="fas fa-wand-magic-sparkles"></i><h3 class="section-title">Snowflake Outcomes</h3></div><div class="feature-grid"><a href="#" class="feature-tile" data-title="Cortex AI"><i class="fas fa-brain"></i><span>Cortex AI</span></a><a href="#" class="feature-tile" data-title="Governed access controls"><i class="fas fa-lock"></i><span>Governed access controls</span></a><a href="#" class="feature-tile" data-title="Lineage and auditability"><i class="fas fa-route"></i><span>Lineage and auditability</span></a><a href="#" class="feature-tile" data-title="In-platform AI and analytics"><i class="fas fa-microchip"></i><span>In-platform AI and analytics</span></a><a href="#" class="feature-tile" data-title="Reduced data movement"><i class="fas fa-down-left-and-up-right-to-center"></i><span>Reduced data movement</span></a></div></div></div></div>
 
-          <!-- Description + Personas Row -->
-          <div class="description-personas-row">
-            <!-- Operate -->
-            <div class="section-block" style="margin-bottom: 0;">
-              <div class="section-header">
-                <i class="fas fa-layer-group"></i>
-                <h3 class="section-title">Operate</h3>
-              </div>
-              <ul class="capability-list">
-                <li><i class="fas fa-chart-line"></i><span>Surface priority risks in incoming submissions</span></li>
-                <li><i class="fas fa-exclamation-triangle"></i><span>Provide actionable insights and exception alerts</span></li>
-                <li><i class="fas fa-sync-alt"></i><span>Streamline policy servicing with automated workflows</span></li>
-              </ul>
-            </div>
-
-            <!-- Personas -->
-            <div class="section-block" style="margin-bottom: 0;">
-              <div class="section-header">
-                <i class="fas fa-users"></i>
-                <h3 class="section-title">Core Personas</h3>
-              </div>
-              <ul class="capability-list">
-                <li><i class="fas fa-pen-fancy"></i><span>Underwriting Teams</span></li>
-                <li><i class="fas fa-notes-medical"></i><span>Claims Teams</span></li>
-                <li><i class="fas fa-user-tie"></i><span>Operations Leadership</span></li>
-                <li><i class="fas fa-headset"></i><span>Policy Servicing Reps</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Key Features -->
-          <div class="section-block" style="margin-bottom: 0;">
-            <div class="section-header">
-              <i class="fas fa-puzzle-piece"></i>
-              <h3 class="section-title">Key Features</h3>
-            </div>
-            <div class="feature-grid">
-              <a href="https://insights.ins-claims-pinned.us-east-2.indico-dev.indico.io/list?list.filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22EQUAL%22%2C%22values%22%3A%5B%22Needs+Attention%22%2C%22In+Good+Order%22%2C%22Calculating%22%2C%22Initializing%22%5D%7D%5D&list.sortByField=created_at" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Claims Workspace">
-                <i class="fas fa-file-medical"></i><span>Claims Workspace</span>
-              </a>
-              <a href="https://insights.ins-try-eu.eu-west-2.indico-prod.indico.io" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Underwriting Workspace">
-                <i class="fas fa-tachometer-alt"></i><span>Underwriting Workspace</span>
-              </a>
-              <a href="https://insights.ins-claims-pinned.us-east-2.indico-dev.indico.io/dashboard?filters=date_range%3A2025-12-29%7C2026-01-29" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Submission Analytics">
-                <i class="fas fa-chart-pie"></i><span>Submission Analytics</span>
-              </a>
-              <a href="https://dev-indico.pythonanywhere.com/submission?cluster=TRY&workflow=4997" class="feature-tile" target="_blank" rel="noopener noreferrer" data-title="Review Queues">
-                <i class="fas fa-tasks"></i><span>Review Queues</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- London Market Panel -->
-      <div class="tab-panel london-market" id="panel-london-market">
-        <div class="panel-box">
-          <div class="panel-header">
-            <div class="panel-icon orchestrate"><i class="fas fa-landmark"></i></div>
-            <h2 class="panel-title">Indico Upstream & Downstream Integrations</h2>
-          </div>
-          <div class="integration-shell">
-            <div class="integration-map" id="integrationMap">
-              <div class="integration-column">
-                <h3>Upstream Systems</h3>
-                <div class="logo-slot" data-slot="upstream1"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 1" /></a><span class="logo-empty">Upstream 1</span></div>
-                <div class="logo-slot" data-slot="upstream2"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 2" /></a><span class="logo-empty">Upstream 2</span></div>
-                <div class="logo-slot" data-slot="upstream3"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Upstream logo 3" /></a><span class="logo-empty">Upstream 3</span></div>
-              </div>
-
-              <div class="integration-center">
-                <div class="integration-arrow">➜</div>
-                <div class="indico-core"><img src="images/ioblueandwhite.png" alt="Indico Data" id="integrationIndicoLogo" /></div>
-                <div class="integration-arrow">➜</div>
-              </div>
-
-              <div class="integration-column">
-                <h3>Downstream Systems</h3>
-                <div class="logo-slot" data-slot="downstream1"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 1" /></a><span class="logo-empty">Downstream 1</span></div>
-                <div class="logo-slot" data-slot="downstream2"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 2" /></a><span class="logo-empty">Downstream 2</span></div>
-                <div class="logo-slot" data-slot="downstream3"><a class="logo-link" href="#" target="_blank" rel="noopener noreferrer"><img alt="Downstream logo 3" /></a><span class="logo-empty">Downstream 3</span></div>
-              </div>
-            </div>
-            <button type="button" class="presentation-toggle" id="presentationToggle" aria-expanded="true">
-              <i class="fas fa-compress-alt"></i> Presentation Mode
-            </button>
-            <div class="integration-controls" id="integrationControls"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Customer Panel -->
-
-      <div class="tab-panel customer" id="panel-customer">
-        <div class="panel-box">
-
-          <!-- Panel Header -->
-          <div class="panel-header">
-            <div class="panel-icon operate">
-              <i class="fas fa-line-chart"></i>
-            </div>
-            <h2 class="panel-title">Focus Points</h2>
-          </div>
-
-          <!-- Full-width Focus Buttons -->
-          <div class="customer-focus-grid">
-            <a href="https://try.indico.io/teach/extraction-studio/5806?targetId=96497" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Submission-to-Downstream Systems in minutes">
-              <i class="fas fa-stopwatch"></i><span>Submission-to-Downstream Systems in minutes</span>
-            </a>
-            <a href="https://insights.ins-try-eu.eu-west-2.indico-prod.indico.io" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Deep file understanding and inference">
-              <i class="fas fa-brain"></i><span>Deep file understanding and inference: summary + compare + next steps</span>
-            </a>
-            <a href="https://insights.ins-enrich.us-east-2.indico-dev.indico.io/review/29?selectedDocId=107&tab=review" class="customer-focus-btn" target="_blank" rel="noopener noreferrer" data-title="Powering broker-ready outputs">
-              <i class="fas fa-file-signature"></i><span>Powering broker-ready outputs: risk reports & market presentations</span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
+      <!-- Solution Blueprint Panel -->
+      <div class="tab-panel london-market" id="panel-solution-blueprint"><div class="panel-box"><div class="panel-header"><div class="panel-icon orchestrate"><i class="fas fa-diagram-project"></i></div><h2 class="panel-title">Phoenix Enterprise Data Foundation</h2></div><div class="integration-shell presentation-mode"><p class="integration-intro">A governed enterprise data foundation that connects source platforms through the Snowflake AI Data Cloud, creates reusable Data Products, and enables trusted analytics and AI with Cortex AI, Snowpark, Secure Data Sharing, Marketplace, Governance, and Workload Isolation.</p><div class="integration-map blueprint-map"><div class="integration-column"><h3>Source Systems</h3><div class="logo-slot has-image"><span>IBOR</span></div><div class="logo-slot has-image"><span>Policy Admin</span></div><div class="logo-slot has-image"><span>Pensions Platforms</span></div><div class="logo-slot has-image"><span>Finance Systems</span></div><div class="logo-slot has-image"><span>Claims</span></div><div class="logo-slot has-image"><span>CRM</span></div><div class="logo-slot has-image"><span>Actuarial Models</span></div></div><div class="integration-center"><div class="integration-arrow">➜</div><div class="snowflake-core"><img src="images/snowflake_logo.png" alt="Snowflake" id="integrationSnowflakeLogo" /><span>Snowflake AI Data Cloud</span></div><div class="integration-arrow">➜</div></div><div class="integration-column"><h3>Governed Data Products</h3><div class="logo-slot has-image"><span>Governance</span></div><div class="logo-slot has-image"><span>Secure Data Sharing</span></div><div class="logo-slot has-image"><span>Snowpark</span></div><div class="logo-slot has-image"><span>Cortex AI</span></div><div class="logo-slot has-image"><span>Marketplace</span></div><div class="logo-slot has-image"><span>Workload Isolation</span></div></div><div class="integration-column"><h3>Business Outcomes</h3><div class="logo-slot has-image"><span>Customer 360</span></div><div class="logo-slot has-image"><span>Consumer Duty Insight</span></div><div class="logo-slot has-image"><span>Finance Reporting</span></div><div class="logo-slot has-image"><span>Claims Automation</span></div><div class="logo-slot has-image"><span>Personalised Pension Guidance</span></div><div class="logo-slot has-image"><span>Actuarial Analytics</span></div></div></div></div></div></div>
     </div>
   </section>
 
@@ -1588,18 +1404,18 @@
         </div>
       </div>
 
-      <!-- Indico Logo Upload -->
+      <!-- Snowflake Logo Upload -->
       <div class="config-section">
-        <label class="config-label">Indico Logo</label>
+        <label class="config-label">Snowflake Logo</label>
         <div class="logo-upload-area">
           <div class="current-logo">
-            <img id="indicoLogoPreview" src="indico_logo.png" alt="Indico Logo" />
+            <img id="snowflakeLogoPreview" src="images/snowflake_logo.png" alt="Snowflake" />
           </div>
           <label class="upload-btn">
             <i class="fas fa-upload"></i> Upload New Logo
-            <input type="file" id="indicoLogoUpload" accept="image/*" hidden />
+            <input type="file" id="snowflakeLogoUpload" accept="image/*" hidden />
           </label>
-          <button class="reset-logo-btn" id="resetIndicoLogo">
+          <button class="reset-logo-btn" id="resetSnowflakeLogo">
             <i class="fas fa-undo"></i> Reset to Default
           </button>
         </div>
@@ -1610,8 +1426,8 @@
         <label class="config-label">Customer Logo</label>
         <div class="logo-upload-area">
           <div class="current-logo">
-            <img id="customerLogoPreview" src="" alt="Customer Logo" style="display: none;" />
-            <span id="customerLogoPlaceholder" class="logo-placeholder"><i class="fas fa-plus"></i> Add Logo</span>
+            <img id="customerLogoPreview" src="images/phoenix_group_logo.png" alt="Phoenix Group" />
+            <span id="customerLogoPlaceholder" class="logo-placeholder" style="display: none;"><i class="fas fa-plus"></i> Add Logo</span>
           </div>
           <label class="upload-btn">
             <i class="fas fa-upload"></i> Upload New Logo
@@ -1673,10 +1489,10 @@
     const panelNav = document.getElementById('panelNav');
     const screenMap = {
       main: { label: 'Main', icon: 'fa-house' },
-      'london-market': { label: 'Integrations', icon: 'fa-landmark' },
-      operate: { label: 'Workspaces', icon: 'fa-play' },
-      orchestrate: { label: 'Agent Studio', icon: 'fa-sliders-h' },
-      customer: { label: 'Focus Points', icon: 'fa-line-chart' }
+      'customer-intelligence': { label: 'Customer Intelligence', icon: 'fa-users-viewfinder' },
+      'operational-simplification': { label: 'Operational Simplification', icon: 'fa-layer-group' },
+      'trusted-ai': { label: 'Trusted AI', icon: 'fa-shield-halved' },
+      'solution-blueprint': { label: 'Solution Blueprint', icon: 'fa-diagram-project' }
     };
 
     let currentScreen = 'main';
@@ -1718,11 +1534,11 @@
       document.getElementById(`panel-${targetScreen}`).classList.add('active');
       document.getElementById('configBtn').style.display = 'none';
 
-      if (targetScreen === 'operate') {
+      if (targetScreen === 'operational-simplification') {
         document.body.classList.add('light-theme');
-      } else if (targetScreen === 'orchestrate') {
+      } else if (targetScreen === 'customer-intelligence') {
         document.body.classList.remove('light-theme');
-      } else if (targetScreen === 'customer') {
+      } else if (targetScreen === 'trusted-ai' || targetScreen === 'solution-blueprint') {
         if (userChosenTheme === 'light') {
           document.body.classList.add('light-theme');
         } else {
@@ -1754,14 +1570,7 @@
       downstream3: 'Downstream 3'
     };
 
-    const integrationDefaults = {
-      upstream1: { image: 'images/exchange.png', url: '' },
-      upstream2: { image: 'images/call.png', url: 'https://drive.google.com/drive/u/0/folders/1mjCqhXSjnKVDxuTeJgVeWThOrh9PfGg_' },
-      upstream3: { image: 'images/file_store.png', url: 'https://drive.google.com/drive/u/0/folders/1YGWYcXFuCcXm2wTdprHKeahPCRonUBa6?q=type:archive%20parent:1YGWYcXFuCcXm2wTdprHKeahPCRonUBa6' },
-      downstream1: { image: 'images/acturis.png', url: 'https://www.acturis.com/blog/2024/12/13/aviva-and-acturis-launch-ground-breaking-broker-api-to-simplify-claims-process/' },
-      downstream2: { image: 'images/guidewire.png', url: 'https://marketplace.guidewire.com/product/indico-data-accelerator-for-intelligent-intake-for-policycenter/01t3n00000SqGx1AAF?tab=Media' },
-      downstream3: { image: '', url: '' }
-    };
+    const integrationDefaults = {};
 
     const integrationControls = document.getElementById('integrationControls');
     const presentationToggle = document.getElementById('presentationToggle');
@@ -1869,11 +1678,11 @@
     const resetLogo = document.getElementById('resetLogo');
     const heroCustomerLogo = document.getElementById('customerLogo');
 
-    // Indico logo elements
-    const indicoLogoUpload = document.getElementById('indicoLogoUpload');
-    const indicoLogoPreview = document.getElementById('indicoLogoPreview');
-    const resetIndicoLogo = document.getElementById('resetIndicoLogo');
-    const heroIndicoLogo = document.querySelector('.indico-logo');
+    // Snowflake logo elements
+    const snowflakeLogoUpload = document.getElementById('snowflakeLogoUpload');
+    const snowflakeLogoPreview = document.getElementById('snowflakeLogoPreview');
+    const resetSnowflakeLogo = document.getElementById('resetSnowflakeLogo');
+    const heroSnowflakeLogo = document.querySelector('.snowflake-logo');
 
     // Second logo elements
     const secondLogoUpload = document.getElementById('secondLogoUpload');
@@ -1887,7 +1696,7 @@
     const heroCustomerConnector = document.getElementById('customerConnector');
     const customerLogoPlaceholder = document.getElementById('customerLogoPlaceholder');
 
-    const defaultIndicoLogoSrc = 'indico_logo.png';
+    const defaultSnowflakeLogoSrc = 'images/snowflake_logo.png';
     let currentLinks = [];
 
     // Open config panel
@@ -1924,25 +1733,25 @@
       });
     });
 
-    // Indico logo upload
-    indicoLogoUpload.addEventListener('change', (e) => {
+    // Snowflake logo upload
+    snowflakeLogoUpload.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (event) => {
           const dataUrl = event.target.result;
-          indicoLogoPreview.src = dataUrl;
-          heroIndicoLogo.src = dataUrl;
+          snowflakeLogoPreview.src = dataUrl;
+          heroSnowflakeLogo.src = dataUrl;
         };
         reader.readAsDataURL(file);
       }
     });
 
-    // Reset Indico logo
-    resetIndicoLogo.addEventListener('click', () => {
-      indicoLogoPreview.src = defaultIndicoLogoSrc;
-      heroIndicoLogo.src = defaultIndicoLogoSrc;
-      indicoLogoUpload.value = '';
+    // Reset Snowflake logo
+    resetSnowflakeLogo.addEventListener('click', () => {
+      snowflakeLogoPreview.src = defaultSnowflakeLogoSrc;
+      heroSnowflakeLogo.src = defaultSnowflakeLogoSrc;
+      snowflakeLogoUpload.value = '';
     });
 
     // Logo upload
@@ -2066,7 +1875,7 @@
       const config = {
         theme: document.body.classList.contains('light-theme') ? 'light' : 'dark',
         logos: {
-          indico: heroIndicoLogo.src,
+          snowflake: heroSnowflakeLogo.src,
           customer: heroCustomerLogo.style.display !== 'none' ? heroCustomerLogo.src : null,
           second: heroSecondLogo.style.display !== 'none' ? heroSecondLogo.src : null
         },
@@ -2084,7 +1893,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'indico-demo-config.json';
+      a.download = 'snowflake-phoenix-demo-config.json';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -2131,9 +1940,9 @@
 
           // Apply logos
           if (config.logos) {
-            if (config.logos.indico) {
-              heroIndicoLogo.src = config.logos.indico;
-              indicoLogoPreview.src = config.logos.indico;
+            if (config.logos.snowflake) {
+              heroSnowflakeLogo.src = config.logos.snowflake;
+              snowflakeLogoPreview.src = config.logos.snowflake;
             }
             if (config.logos.customer) {
               heroCustomerLogo.src = config.logos.customer;
