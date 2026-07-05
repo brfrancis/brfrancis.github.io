@@ -34,10 +34,8 @@
   <div class="modal" id="modal"><div class="modal-card"><button class="btn" id="closeModal">Close</button><span class="badge">Functionality</span><h3 id="modalTitle">Demo</h3><p>This is a placeholder for the customer-facing proof point. It can link to a live demo, screenshot, or deeper architecture view when available.</p></div></div>
   <footer><div class="wrap">Phoenix Group × Snowflake · Static GitHub Pages presentation · <a class="helper" href="helper.html">Presenter helper</a></div></footer>
   <script>
-    const modal=document.getElementById('modal');
-    document.querySelectorAll('.feature-link').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();document.getElementById('modalTitle').textContent=link.dataset.title||link.textContent;modal.classList.add('open')}));
-    document.getElementById('closeModal').addEventListener('click',()=>modal.classList.remove('open'));
-    modal.addEventListener('click',event=>{if(event.target===modal)modal.classList.remove('open')});
+    // Feature links now follow their href directly.
+    // The previous modal behaviour has been disabled.
   </script>
 </body>
 </html>
